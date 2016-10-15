@@ -1,0 +1,19 @@
+.demo-avatar {
+    width: 80px;
+    margin: 1em;
+}
+.material-icons {
+    margin-right: 0.5rem;
+}
+#view-source {
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    z-index: 900;
+}
+.demo-content .mdl-card__title.mdl-card__title {
+    color: #fff;
+}
