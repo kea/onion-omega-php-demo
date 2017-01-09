@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../Omega/PwmExp.php');
 
-\onionSetVerbosity(ONION_VERBOSITY_DEBUG);
+\onionSetVerbosity(ONION_VERBOSITY_NONE - 1);
 
 $frequency = PWM_FREQUENCY_DEFAULT; // float
 $channel = 1; // 0-15
