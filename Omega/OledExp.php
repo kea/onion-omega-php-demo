@@ -8,10 +8,8 @@ class OledExp
 
     public function __construct($initialize = true)
     {
-        if ($initialize) {
-            if ($this->checkInit()) {
-                $this->driverInit();
-            }
+        if ($initialize && $this->checkInit()) {
+            $this->driverInit();
         }
     }
 
@@ -33,6 +31,21 @@ class OledExp
     public function clear()
     {
         return \oledClear();
+    }
+
+    public function writeChar($c)
+    {
+        return \oledWriteChar($c);
+    }
+
+    public function setDisplayPower(bool $powerOn)
+    {
+        return \oledSetDisplayPower($powerOn);
+    }
+
+    public function setBrightness(bool $bright)
+    {
+        return \oledSetBrightness($bright);
     }
 
     public function write($message)

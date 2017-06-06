@@ -1,28 +1,36 @@
 <?php
 
 include(__DIR__.'/../Omega/PwmExp.php');
+include(__DIR__.'/../ServoMotor.php');
 
 \onionSetVerbosity(ONION_VERBOSITY_NONE - 1);
 
-$frequency = PWM_FREQUENCY_DEFAULT; // float
-$channel = 1; // 0-15
-$duty = 0.1; //0.0 100.0
-$delay = 0.1; //0.0 100.0
+$servos = [
+  ['name' => 'Futaba S3003', 'rotation' => 60, 'pulseCycle' => 30, 'pulseMin' => 500, 'pulseMax' => 3000],
+  ['name' => 'Tower Pro SG90', 'rotation' => 180, 'pulseCycle' => 20, 'pulseMin' => 1000, 'pulseMax' => 2000],
+];
 
-$pwm = new \Omega\PwmExp();
+$standardServo = new ServoMotor(0, 500, 2400);
+$microServo = new ServoMotor(1, 500, 2400);
 
-if (!$pwm->isInitialized()) {
-    echo "> ERROR: PWM Expansion not found!\n";
+$standardServo->setAngle(90.0);
+$microServo->setAngle(90.0);
 
-    exit(1);
-}
+sleep(2);
 
-if (!$pwm->setFrequency($frequency)) {
-    echo "> ERROR: pwm set frequency failed!\n";
-}
-
-if (!$pwm->setupDriver($channel, $duty, $delay)) {
-    echo "> ERROR: setup driver failed!\n";
+while (true) {
+    # Turn servos to the 0 angle position
+    $standardServo->setAngle(0.0);
+    $microServo->setAngle(0.0);
+    sleep(2);
+    # Turn servos to the neutral position
+    $standardServo->setAngle(90.0);
+    $microServo->setAngle(90.0);
+    sleep(2);
+    # Turn servos to the 180 angle position
+    $standardServo->setAngle(180.0);
+    $microServo->setAngle(180.0);
+    sleep(2);
 }
 
 sleep(5);

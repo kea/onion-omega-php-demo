@@ -5,6 +5,7 @@ namespace Omega;
 class PwmExp
 {
     private $initialized = false;
+    private $frequency;
 
     public function __construct($initialize = true)
     {
@@ -41,7 +42,14 @@ class PwmExp
 
     public function setFrequency($frequency)
     {
+        $this->frequency = $frequency;
+
         return \pwmSetFrequency($frequency);
+    }
+
+    public function getFrequency()
+    {
+        return $this->frequency;
     }
 
     public function setupDriver($channel, $duty, $delay)
